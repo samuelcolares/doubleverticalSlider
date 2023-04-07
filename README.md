@@ -66,10 +66,10 @@ With this, when the elements are loaded, they will look like this:
 
 ```mermaid
 graph LR;
-A[Left-Element-1 0px] --> B[Right-Element-4 0px];
-C[Left-Element-2 1000px] --> D[Right-Element-3 -1000px];
-E[Left-Element-3 2000px] --> F[Right-Element-2 -2000px];
-G[Left-Element-4 3000px] --> H[Right-Element-1 -3000px];
+A[Left-Element-1 0px] --> B[Right-Element-1 0px];
+C[Left-Element-2 1000px] --> D[Right-Element-2 -1000px];
+E[Left-Element-3 2000px] --> F[Right-Element-3 -2000px];
+G[Left-Element-4 3000px] --> H[Right-Element-4 -3000px];
 
 ```
 
