@@ -1,76 +1,65 @@
-const btnUp = document.querySelector('.up')
-const btnDown = document.querySelector('.down')
-const btnLeft = document.querySelector('.left')
-const btnRight = document.querySelector('.right')
-const slides = document.querySelectorAll('.slide')
-const leftslide = document.querySelector('.left-slide')
-const rightSlide = document.querySelector('.right-slide')
+const sliderContainer = document.querySelector('.slider-container')
+const slideRight = document.querySelector('.right-slide')
+const slideLeft = document.querySelector('.left-slide')
+const upButton = document.querySelector('.up')
+const downButton = document.querySelector('.down')
+const leftButton = document.querySelector('.left')
+const rightButton = document.querySelector('.right')
+const slidesLength = slideRight.querySelectorAll('div').length
+
+let activeSlideIndex = 0
 
 
 if (window.innerHeight <= window.innerWidth) {
-    rightSlide.style.transform = `translateY(-${(slides.length - 1) * window.innerHeight}px)`
+    slideLeft.style.top = `-${(slidesLength - 1) * 100}vh`
 } else if (window.innerHeight > window.innerWidth) {
-    rightSlide.style.transform = `translateX(-${(slides.length - 1) * window.innerWidth}px)`
+    slideLeft.style.left = `-${(slidesLength - 1) * 100}vw`
 }
-// rightSlide.style.top = `-${(slides.length - 1) * 100}vh`
-const x = (slides.length - 1) * window.innerHeight
-const xxy = (slides.length - 1) * window.innerWidth // 3 * 390 = 1170
-let counter = 0
-btnUp.addEventListener('click', () => {
-    sliding('up')
-})
-btnDown.addEventListener('click', () => {
-    sliding('down')
-})
 
-function sliding(direction) {
 
-    const sliderHeight = window.innerHeight
-    if (direction === 'up') {
-        counter++
-        if (counter > slides.length - 1) {
-            counter = 0
+
+
+upButton.addEventListener('click', () => changeSlide('up'))
+downButton.addEventListener('click', () => changeSlide('down'))
+leftButton.addEventListener('click', () => changeSlideMobile('left'))
+rightButton.addEventListener('click', () => changeSlideMobile('right'))
+
+
+const changeSlide = (direction) => {
+    const sliderHeight = sliderContainer.clientHeight
+    if(direction === 'up') {
+        activeSlideIndex++
+        if(activeSlideIndex > slidesLength - 1) {
+            activeSlideIndex = 0
         }
-    } else if (direction === 'down') {
-        counter--
-        if (counter < 0) {
-            counter = slides.length - 1
+    } else if(direction === 'down') {
+        activeSlideIndex--
+        if(activeSlideIndex < 0) {
+            activeSlideIndex = slidesLength - 1
         }
     }
 
-    rightSlide.style.transform = `translateY(${counter * sliderHeight}px)`
-    leftslide.style.transform = `translateY(${-((counter * sliderHeight) - x)}px)`
+    slideRight.style.transform = `translateY(-${activeSlideIndex * sliderHeight}px)`
+    slideLeft.style.transform = `translateY(${activeSlideIndex * sliderHeight}px)`
 }
 
-window.addEventListener(`keydown`, (e) => {
-    if (e.key === `ArrowUp`) {
-        sliding('up')
-    } else if (e.key === `ArrowDown`) {
-        sliding('down')
-    }
-})
-let countM = 0
-function slidingMobile(direction) {
-    
-    const sliderWidth = window.innerWidth
-    if (direction === 'left') {
-        counter++
-        if (counter > slides.length - 1) {
-            counter = 0
+
+const changeSlideMobile = (direction) => {
+    const sliderWidth = sliderContainer.clientWidth
+    if(direction === 'right') {
+        activeSlideIndex++
+        if(activeSlideIndex > slidesLength - 1) {
+            activeSlideIndex = 0
         }
-    } else if (direction === 'right') {
-        counter--
-        if (counter < 0) {
-            counter = slides.length - 1
+    } else if(direction === 'left') {
+        activeSlideIndex--
+        if(activeSlideIndex < 0) {
+            activeSlideIndex = slidesLength - 1
         }
     }
-    rightSlide.style.transform = `translateX(-${counter * sliderWidth}px)`
-    leftslide.style.transform = `translateX(${(counter * sliderWidth) - xxy}px)`
+
+    slideRight.style.transform = `translateX(-${activeSlideIndex * sliderWidth}px)`
+    slideLeft.style.transform = `translateX(${activeSlideIndex * sliderWidth}px)`
 }
 
-btnLeft.addEventListener('click', () => {
-    slidingMobile('left')
-})
-btnRight.addEventListener('click', () => {
-    slidingMobile('right')
-})
+
