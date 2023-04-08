@@ -66,10 +66,13 @@ With this, when the elements are loaded, they will look like this:
 
 ```mermaid
 graph LR;
-A[Left-Element-1 0px] --> B[Right-Element-1 0px];
-C[Left-Element-2 1000px] --> D[Right-Element-2 -1000px];
-E[Left-Element-3 2000px] --> F[Right-Element-3 -2000px];
-G[Left-Element-4 3000px] --> H[Right-Element-4 -3000px];
+G[Left-Element-1 -3000px]
+E[Left-Element-2 -2000px]    
+C[Left-Element-3 -1000px]
+A[Left-Element-4 0px] --> B[Right-Element-1 0px];
+Z[overflow:hidden] --> D[Right-Element-2 1000px];
+X[overflow:hidden] --> F[Right-Element-3 2000px];
+Y[overflow:hidden] --> H[Right-Element-4 3000px];
 
 ```
 
@@ -98,7 +101,7 @@ const changeSlide = (direction) => {
 }
 ```
 <hr>
-<h3>Licença</h3>
+<h3>License</h3>
 
 
 This project was inspired by project number 26 from the public repository 50 projects 50 days (https://github.com/bradtraversy/50projects50days) 
@@ -160,10 +163,13 @@ slideLeft.style.top = `-${(slidesLength - 1) * 100}vh`
 Com isso ao dar load os elementos vao ficar assim:
 ```mermaid
 graph LR;
-A[Esquerda-Elemento-4 0px] --> B[Direita-Elemento-4 0px];
-C[Esquerda-Elemento-3 1000px] --> D[Direita-Elemento-3 -1000px];
-E[Esquerda-Elemento-2 2000px] --> F[Direita-Elemento-2 -2000px];
-G[Esquerda-Elemento-1 3000px] --> H[Direita-Elemento-1 -3000px];
+G[Esquerda-Elemento-1 -3000px]
+E[Esquerda-Elemento-2 -2000px]    
+C[Esquerda-Elemento-3 -1000px]
+A[Esquerda-Elemento-4 0px] --> B[Direita-Elemento-1 0px];
+Z[overflow:hidden] --> D[Direita-Elemento-2 1000px];
+X[overflow:hidden] --> F[Direita-Elemento-3 2000px];
+Y[overflow:hidden] --> H[Direita-Elemento-4 3000px];
 ```
 
 agora só é preciso criar eventos para que quando o botão para cima for pressionado os elementos da esquerda se deslocam +1000px e os da direita em -1000px
